@@ -1,6 +1,7 @@
 @font-face {
     font-family: myFirstFont;
     src: url(./fonts/myFirstFont.woff);
+    font-display: swap;
   }
 
 
@@ -33,6 +34,8 @@ h1, h2{
 #wordList {
     overflow-y: scroll;
     height: 150px;
+    white-space: pre;
+
 }
 button{
     cursor: pointer;

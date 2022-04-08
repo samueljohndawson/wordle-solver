@@ -28,7 +28,7 @@ function submitGuess() {
     // Update guesses
     let guess = document.getElementById('inputBox').value.toLowerCase();
     guesses.push(guess.toUpperCase());
-    document.getElementById('guesses').innerHTML = guesses.join("<br>");
+    document.getElementById('guesses').innerHTML = guesses.join(",");
     
 
 
@@ -84,7 +84,7 @@ function submitGuess() {
 
     console.log(words)
     document.getElementById('posWordsTitle').innerHTML = 'Possible Words (' + words.length + ')'
-    document.getElementById('wordList').innerHTML = words.join('<br>').toUpperCase()
+    document.getElementById('wordList').innerHTML = words.join('\n').toUpperCase()
     
     // reset the colors and empty the input box, reset letter counts for next submission
     clearAll()
@@ -5953,7 +5953,7 @@ function hardReset() {
         'pupal',
         ]
     document.getElementById('posWordsTitle').innerHTML = 'Possible Words (' + words.length + ')'
-    document.getElementById('wordList').innerHTML = words.join('<br>').toUpperCase()
+    document.getElementById('wordList').innerHTML = words.join('\n').toUpperCase()
     document.getElementById('guesses').innerHTML = ''
     
 }
