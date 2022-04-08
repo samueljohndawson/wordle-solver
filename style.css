@@ -104,3 +104,19 @@ input {
 #instructionsTitle {
     font-size: 30px;
 }
+
+
+@media screen and (max-width: 800px) {
+    .colorButton {
+        width: 10%;
+        height: 0;
+        padding-bottom: 10%;
+    }
+    #guessesDiv {
+        display: none;
+    }
+
+    #wordListDiv {
+        width:100%
+    }
+}
