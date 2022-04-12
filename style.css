@@ -35,8 +35,15 @@ h1, h2{
     overflow-y: scroll;
     height: 150px;
     white-space: pre;
-
 }
+
+#guesses {
+    white-space: pre;
+}
+
+
+
+
 button{
     cursor: pointer;
 }
@@ -123,7 +130,7 @@ input {
     text-align: right;;
 }
 
-
+/* responseive display */
 @media screen and (max-width: 800px) {
     .colorButton {
         width: 13%;
@@ -138,3 +145,11 @@ input {
         width:100%
     }
 }
+
+
+/* Enlarge color buttons and instructions button on mouseover */
+.colorButton, #openInstructionsButton {
+    transition: transform .2s; /* Animation */
+}
+.colorButton:hover, #openInstructionsButton:hover {
+    transform: scale(1.15);

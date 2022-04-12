@@ -12,8 +12,9 @@ let colorButton2 = document.getElementById('colorButton2')
 let colorButton3 = document.getElementById('colorButton3')
 let colorButton4 = document.getElementById('colorButton4')
 let colorButton5 = document.getElementById('colorButton5')
+const colorButtons = document.getElementsByClassName('colorButton')
 
-
+let myObject = {a: 15}
 
 // Runs when user hits submit
 function submitGuess() {
@@ -28,7 +29,7 @@ function submitGuess() {
     // Update guesses
     let guess = document.getElementById('inputBox').value.toLowerCase();
     guesses.push(guess.toUpperCase());
-    document.getElementById('guesses').innerHTML = guesses.join(",");
+    document.getElementById('guesses').innerHTML = guesses.join("\n");
     
 
 
@@ -38,17 +39,16 @@ function submitGuess() {
     for (i=0; i<guess.length; i++) {
         let char = guess.charAt(i)
         switch (eval('colorButton' + (i+1)).style.backgroundColor) {
-
-            case 'rgb(120, 124, 126)':
+            
+            case 'rgb(120, 124, 126)':  //grey
                 if (lettersInWord.has(char)) {
-                    letterCountLimits[char] = letterCounts[char]
-                    
+                letterCountLimits[char] = letterCounts[char];
                 } else {
                     lettersNotInWord.add(char);
                 }
                 break;
 
-            case 'rgb(201, 180, 88)':
+            case 'rgb(201, 180, 88)':   //yellow
                 lettersInWord.add(char);
                 letterNotPositions[i] = char;
 
@@ -60,7 +60,7 @@ function submitGuess() {
                 
                 break;
 
-            case 'rgb(106, 170, 100)':
+            case 'rgb(106, 170, 100)':  //green
                 lettersInWord.add(char)
                 letterPositions[i] = char;
                 
@@ -68,7 +68,14 @@ function submitGuess() {
                     letterCounts[char] += 1;
                 } else {
                     letterCounts[char] = 1;
-                }                break;
+                }
+                // console.log('char:')
+                // console.log(char)
+                // console.log('letterCounts:')
+                // console.log(letterCounts)
+                // console.log('LetterCounts[char]:')
+                // console.log(letterCounts[char])
+                break;
         }
     }
 
@@ -180,12 +187,12 @@ function resetLetterCounts() {
 function clearAll() {
     resetColors();
     resetInputBox();
-    resetLetterCounts();
-
+    letterCountLimits = {}
 }
 
 function hardReset() {
     clearAll()
+    resetLetterCounts()
     guesses = []
     lettersInWord = new Set()
     lettersNotInWord = new Set()
@@ -5959,6 +5966,7 @@ function hardReset() {
 }
 
 
+// Modal / Instructions Popup
 const openInstructionsButton = document.getElementById('openInstructionsButton');
 const instructionsModal = document.getElementById('instructionsModal');
 const closeInstructionsButton = document.getElementById('closeInstructionsButton');
