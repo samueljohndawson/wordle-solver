@@ -1,7 +1,7 @@
 let words = []
 let guesses = []
 let lettersInWord = new Set()
-let lettersNotInWord = new Set()
+let lettersNotInWord = []
 let letterPositions = {}
 let letterNotPositions = {}
 let letterCounts = {}
@@ -46,6 +46,8 @@ function submitGuess() {
                 } else {
                     lettersNotInWord.add(char);
                 }
+                // console.log('Letters Not in word:')
+                // console.log(lettersNotInWord)
                 break;
 
             case 'rgb(201, 180, 88)':   //yellow
@@ -57,7 +59,11 @@ function submitGuess() {
                 } else {
                     letterCounts[char] = 1;
                 }
-                
+                // console.log('Letters in word:')
+                // console.log(lettersInWord)
+                // console.log('Letters Not Positions:')
+                // console.log(letterNotPositions)
+
                 break;
 
             case 'rgb(106, 170, 100)':  //green
@@ -69,6 +75,10 @@ function submitGuess() {
                 } else {
                     letterCounts[char] = 1;
                 }
+                // console.log('Letters in word:')
+                // console.log(lettersInWord)
+                // console.log('Letters Positions:')
+                // console.log(letterPositions)
                 // console.log('char:')
                 // console.log(char)
                 // console.log('letterCounts:')
@@ -80,7 +90,12 @@ function submitGuess() {
     }
 
 
+    
 
+    //  removes letters from lettersNotInWord that were later added to lettersInWord by a subsequent green letter
+    let lettersNotInWordList = Array.from(lettersNotInWord)
+    lettersNotInWordList = lettersNotInWordList.filter(removeDuplicates)
+    lettersNotInWord = new Set(lettersNotInWordList)
 
     // filters the word list according to the new letter lists
     words = words.filter(checkLettersNotInWord);
@@ -89,7 +104,7 @@ function submitGuess() {
     words = words.filter(checkLettersInWord);
     words = words.filter(checkLetterCountLimits);
 
-    console.log(words)
+    // console.log(words)
     document.getElementById('posWordsTitle').innerHTML = 'Possible Words (' + words.length + ')'
     document.getElementById('wordList').innerHTML = words.join('\n').toUpperCase()
     
@@ -113,6 +128,15 @@ function changeColor(button) {
             break;
     }
 
+}
+
+
+// Logic for removing letters from lettersNotInWord that were later added to lettersInWord by a subsequent green letter
+function removeDuplicates(letter) {
+    if (lettersInWord.has(letter)) {
+        return false;
+    }
+    return true;
 }
 
 
