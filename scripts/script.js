@@ -6003,6 +6003,6 @@ closeInstructionsButton.addEventListener('click', () => {
     instructionsModal.classList.remove('show');
 })
 
-
-
 hardReset()
+
+// End
